@@ -1,12 +1,15 @@
 'use client';
 import { Checkbox, Paper, Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/material';
+import { useQuery } from '@tanstack/react-query';
 // import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { CheckIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import { ResponsiveContainer } from 'recharts';
+import { useAccount } from 'wagmi';
 
+import { checkUserBalanceBase } from '@/lib/func';
 // import { checkUserBalanceBase } from '@/lib/func';
 import { scaleDown, shortenAddress } from '@/lib/utils';
 // import useGlobalStore from '@/hooks/store/useGlobalStore';
@@ -34,14 +37,14 @@ export default function Page() {
   const [activeSelected, setSelectedActive] = useState(TYPE.PAYMENTS)
   const { data: userDetails } = useFetchUserDetails()
 
-  // const { address } = useAccount()
+  const { address } = useAccount()
   const { data: payments } = useGetPayments()
 
-  // const { data: balance } = useQuery({
-  //   queryKey: ["userbalance" + address],
-  //   enabled: !!address,
-  //   queryFn: () => checkUserBalanceBase(address)
-  // })
+  const { data: balance } = useQuery({
+    queryKey: ["userbalance" + address],
+    enabled: !!address,
+    queryFn: () => checkUserBalanceBase(address)
+  })
 
   const totalAmt = useMemo(() => {
     if (activeCheckBox.length === 0) return 0
@@ -91,12 +94,11 @@ export default function Page() {
           <div className='absolute left-12 text-[#0088FE]'>Balance</div>
           <div className='absolute top-12 size-5 bg-[#00C49F] rounded shadow-lg'></div>
           <div className='absolute top-12 left-12 text-[#00C49F]'>Deducted</div>
-          <PieChartExample balance={ 80 } />
+          {balance && <PieChartExample balance={parseInt(balance.signerBalance)} />}
           {/* <PieChartExample balance={balance ? parseInt(balance?.signerBalance) : 0} /> */}
           {/* <div className='absolute text-3xl font-semibold text-[#0088FE] left-[45%] bottom-[48%]'>{balance?.signerBalance}</div> */}
           <div className='absolute text-lg font-semibold left-1/2 -translate-x-1/2 bottom-[10%]'>
-            Balance: {80} {" "}
-            {/* Balance: {balance?.signerBalance} {" "} */}
+            Balance: {balance?.signerBalance} {" "}
             <svg
               aria-label='USDC'
               width='1em'
