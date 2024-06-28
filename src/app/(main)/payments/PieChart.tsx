@@ -1,14 +1,12 @@
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 
-
-
 const PieChartExample = ({ balance }: {
   balance: number
 }) => {
 
   const data = [
     { name: 'Group A', value: balance },
-    { name: 'Group B', value: 100 },
+    { name: 'Group B', value: 100 - balance },
   ];
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];

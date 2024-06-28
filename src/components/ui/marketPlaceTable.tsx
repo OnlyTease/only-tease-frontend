@@ -61,7 +61,7 @@ export default function CustomizedTables() {
         borderRadius: "10px",
         border: "2px solid #FA78FF "
       }}
-      className='w-[1100px]  bg-white text-white border-fuchsia-700 border'
+      className='w-full md:w-[1100px] bg-white text-white border-fuchsia-700 border'
     >
       {' '}
       {selectActiveData.icon !== '' && (
@@ -114,10 +114,10 @@ export default function CustomizedTables() {
             if (!modelData) return null;
             return (
               <StyledTableRow key={modelData.id}>
-                <StyledTableCell component='th' scope='row'>
+                <StyledTableCell component='th' scope='row' className='w-10'>
                   <Image
                     src={modelData.icon}
-                    className='w-10 h-10 rounded-full'
+                    className='w-10 h-10 rounded-full min-w-10'
                     alt='modelIcon'
                   />
                 </StyledTableCell>

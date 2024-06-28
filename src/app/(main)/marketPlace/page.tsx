@@ -31,21 +31,21 @@ function Page() {
           );
         })}
       </div>
-      <div className='w-[1100px] ml-12'>
-        <div className='flex text-white  justify-around px-10 pb-6 '>
+      <div className='w-full md:w-[1100px] md:ml-12'>
+        <div className='flex text-white justify-center gap-4 md:justify-around px-10 pb-6 '>
           <span
             onClick={() => setCollection('Your Collection')}
             className={`${collection === 'Your Collection'
               ? 'text-fuchsia-500'
               : 'text-[#625B71]'
-              } cursor-pointer font-bold text-xl`}
+              } cursor-pointer font-bold text-lg md:text-xl`}
           >
             Your Collection
           </span>
           <span
             onClick={() => setCollection('Buy Nft')}
             className={`${collection === 'Buy Nft' ? 'text-fuchsia-500' : 'text-[#625B71]'
-              } cursor-pointer font-bold text-xl`}
+              } cursor-pointer font-bold text-lg md:text-xl`}
           >
             Buy Collection
           </span>

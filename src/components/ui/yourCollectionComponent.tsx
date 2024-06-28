@@ -10,10 +10,10 @@ const YourCollection = () => {
   const subscriptions = data?.subscriptions ?? []
 
   return (
-    <div className=' w-full  text-white '>
+    <div className='w-full text-white '>
       {subscriptions.length === 0 ? (
         <div className='flex items-center justify-center w-full h-[500px]'>
-          <p className='text-[#625B71] text-3xl font-bold'>
+          <p className='text-[#625B71] text-center text-3xl font-bold'>
             You don't have any collection yet.
             <br /> Buy some NFTs to get started.
           </p>
